@@ -1,0 +1,43 @@
+- name: "C# .NET"
+  description: "Application Platform"
+  icon: /tools/dotnet.svg
+  color: "#512BD4"
+
+- name: "Docker"
+  description: "Container Platform"
+  icon: /tools/docker.svg
+  color: "#2496ED"
+
+- name: "RabbitMQ"
+  description: "Message Broker"
+  icon: /tools/rabbitmq.svg
+  color: "#FF6600"
+
+- name: "PostgreSQL"
+  description: "Relational Database"
+  icon: /tools/postgresql.svg
+  color: "#4169E1"
+
+- name: "SqlServer"
+  description: "Relational Database"
+  icon: /tools/mssqlserver.svg
+  color: "#CC2927"
+
+- name: "Azure"
+  description: "Cloud Platform"
+  icon: /tools/azure.svg
+  color: "#0078D4"
+
+- name: "DevOps"
+  description: "Delivery Automation"
+  icon: /tools/devops.svg
+  color: "#0078D7"
+
+- name: "Copilot"
+  description: "AI Assistant"
+  icon: /tools/githubcopilot.svg
+  color: "#8B5CF6"
+
+# icons acquired from:
+# - https://simpleicons.org/
+# - https://www.iconarchive.com/

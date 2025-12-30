@@ -1,0 +1,49 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+import Home from "../components/home/Index.astro";
+import About from "../components/about/Index.astro";
+import Services from "../components/services/Index.astro";
+import Contact from "../components/contact/Contact.astro";
+import Tools from "../components/tools/Tools.astro";
+
+import sections from "../data/sections.yml";
+
+const registry = {
+	home: Home,
+	about: About,
+	services: Services,
+	contact: Contact,
+	tools: Tools,
+};
+
+type Key = keyof typeof registry;
+
+export type Section = {
+	id: Key;
+	component: any;
+};
+---
+
+<Layout>
+	{
+		sections.map((section: Section) => {
+			const Component = registry[section.id];
+
+			return (
+				<section id={section.id}>
+					<Component />
+				</section>
+			);
+		})
+	}
+</Layout>
+
+<style>
+	section {
+		width: 100%;
+		max-width: 750px;
+		padding: 2rem 0;
+		margin: 0 auto;
+	}
+</style>

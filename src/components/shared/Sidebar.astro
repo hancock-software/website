@@ -1,0 +1,62 @@
+---
+import sections from "../../data/sections.yml";
+
+export type Section = {
+    id: string;
+    title: string;
+    icon: string;
+    order: number;
+};
+---
+
+<nav>
+    <ul>
+        {
+            sections.map((section: Section) => (
+                <li>
+                    <a href={`/#${section.id}`} title={section.title}>
+                        <i class={`${section.icon}`} />
+                    </a>
+                </li>
+            ))
+        }
+    </ul>
+</nav>
+
+<style>
+    nav {
+        display: flex;
+        justify-content: center;
+        padding: 2rem 0;
+        font-size: 1.5em;
+    }
+
+    ul {
+        display: inline-flex;
+        align-items: center;
+        gap: 1rem;
+
+        list-style: none;
+        padding: 0 20px;
+        margin: 0;
+
+        border-radius: 1rem;
+        color: rgba(255, 255, 255, 0.9);
+        background: rgba(255, 255, 255, 0.03);
+    }
+
+    li {
+        margin: 0;
+    }
+
+    a {
+        display: grid;
+        place-items: center;
+
+        width: 48px;
+        height: 48px;
+
+        color: var(--color-text);
+        text-decoration: none;
+    }
+</style>

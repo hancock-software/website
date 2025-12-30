@@ -1,0 +1,14 @@
+---
+const { email, location } = Astro.props;
+---
+
+<ul>
+    <li>
+        <span>✉</span>
+        <a href={`mailto:${email}`}>{email}</a>
+    </li>
+    <li>
+        <span>📍</span>
+        {location}
+    </li>
+</ul>

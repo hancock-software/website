@@ -1,0 +1,47 @@
+---
+const { title, subtitle } = Astro.props as {
+    title?: string;
+    subtitle?: string;
+};
+---
+
+<div class="">
+    <div class="heading">
+        <p>{title}</p><span>{subtitle}</span>
+    </div>
+</div>
+
+<style>
+    .heading {
+        font-size: clamp(2rem, 8vw, 3.5rem);
+        font-weight: 400;
+        text-align: center;
+        margin-bottom: 2rem;
+        line-height: 1.2;
+        padding-bottom: 3rem;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+
+    @media (min-width: 1080px) {
+        .heading {
+            font-size: clamp(3.5rem, 5vw, 4.5rem);
+            text-align: left;
+        }
+    }
+
+    @media (min-width: 1440px) {
+        .heading {
+            font-size: 5rem;
+            text-align: left;
+        }
+    }
+
+    .heading p {
+        color: rgba(255, 255, 255, 0.9);
+        margin: 0;
+    }
+    .heading span {
+        color: rgba(255, 255, 255, 0.2);
+    }
+</style>

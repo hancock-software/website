@@ -1,0 +1,10 @@
+services:
+  - title: "Dynamic Animation & Motion Design"
+    accent: "orange"
+    icon: "layers"
+    link: "/#projects"
+
+  - title: "Framer, Figma, WordPress, React"
+    accent: "green"
+    icon: "grid"
+    link: "/#projects"

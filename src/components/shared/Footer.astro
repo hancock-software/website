@@ -1,0 +1,208 @@
+---
+import Links from "./Links.astro";
+
+type Link = {
+    label: string;
+    href: string;
+    rel?: string;
+    target?: "_blank" | "_self" | "_parent" | "_top";
+};
+
+export type Props = {
+    company: string;
+    companyNumber: string;
+    vatNumber: string;
+    location: string[];
+    email: string;
+    legal: Link[];
+    socials: Link[];
+    disclaimer: string;
+};
+
+const {
+    company,
+    companyNumber,
+    vatNumber,
+    location = [],
+    email,
+    legal = [],
+    socials = [],
+    disclaimer,
+} = Astro.props as Props;
+---
+
+<div class="footer">
+    <div class="footer-main">
+        <div class="company-info">
+            <p>
+                <small>
+                    © {new Date().getFullYear()}
+                    {company}. All rights reserved.
+                </small>
+            </p>
+            <p>
+                <small>
+                    {companyNumber && <span>Company No: {companyNumber}</span>}
+                    {companyNumber && vatNumber && <span> · </span>}
+                    {vatNumber && <span>VAT No: {vatNumber}</span>}
+                </small>
+            </p>
+        </div>
+
+        {
+            (location.length > 0 || email) && (
+                <address class="contact-info">
+                    {location.length > 0 && (
+                        <p>
+                            {location.map((line) => (
+                                <span>
+                                    {line}
+                                    <br />
+                                </span>
+                            ))}
+                        </p>
+                    )}
+
+                    <p>
+                        <a href={`mailto:${email}`}>{email}</a>
+                    </p>
+                </address>
+            )
+        }
+
+        {
+            socials.length > 0 && (
+                <nav aria-label="Footer" class="footer-nav">
+                    {socials.length > 0 && (
+                        <ul aria-label="Socials" class="social-links">
+                            {socials.map((s) => (
+                                <li>
+                                    <a
+                                        href={s.href}
+                                        rel={s.rel}
+                                        target={s.target}
+                                    >
+                                        {s.label}
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+                    )}
+                </nav>
+            )
+        }
+
+        <Links
+            title="Company"
+            links={new Array<Link>(
+                { label: "Privacy", href: "/legal/privacy" },
+                { label: "Terms", href: "/legal/terms" },
+            )}
+        />
+    </div>
+
+    {
+        disclaimer && (
+            <p class="disclaimer">
+                <small>{disclaimer}</small>
+            </p>
+        )
+    }
+</div>
+
+<style>
+    .footer {
+        padding: 3rem 2rem 2rem;
+        background: rgba(0, 0, 0, 0.2);
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 0.875rem;
+    }
+
+    .footer-main {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    @media (min-width: 768px) {
+        .footer-main {
+            grid-template-columns: 2fr 1.5fr 1fr;
+            align-items: start;
+        }
+    }
+
+    .company-info p {
+        margin: 0.25rem 0;
+    }
+
+    .company-info small {
+        color: #6b7280;
+        line-height: 1.6;
+    }
+
+    .contact-info {
+        font-style: normal;
+        line-height: 1.6;
+    }
+
+    .contact-info p {
+        margin: 0;
+    }
+
+    .contact-info a {
+        color: #111827;
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    .contact-info a:hover {
+        text-decoration: underline;
+    }
+
+    .footer-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        align-items: flex-start;
+    }
+
+    @media (min-width: 768px) {
+        .footer-nav {
+            align-items: flex-end;
+            text-align: right;
+        }
+    }
+
+    .footer-nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .footer-nav a {
+        color: #374151;
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    .footer-nav a:hover {
+        color: #111827;
+        text-decoration: underline;
+    }
+
+    .disclaimer {
+        margin-top: 2rem;
+        padding-top: 1.25rem;
+        border-top: 1px solid rgba(0, 0, 0, 0.5);
+        max-width: 60rem;
+    }
+
+    .disclaimer small {
+        color: #6b7280;
+        line-height: 1.6;
+        display: block;
+    }
+</style>

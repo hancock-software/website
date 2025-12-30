@@ -1,0 +1,110 @@
+---
+import tools from "../../data/tools.yml";
+import Heading from "../shared/Heading.astro";
+
+export type Tool = {
+    name: string;
+    description: string;
+    icon: string;
+    color: string;
+};
+---
+
+<Heading title="ENTERPRISE" subtitle="TOOLS" />
+
+<ul class="tools-grid">
+    {
+        tools.map((tool: Tool) => (
+            <li class="tool">
+                <div class="icon" style={`background-color: ${tool.color};`}>
+                    <img
+                        src={tool.icon}
+                        alt={`${tool.name} logo`}
+                        style="filter: brightness(0) invert(1);"
+                    />
+                </div>
+
+                <div class="meta">
+                    <h3>{tool.name}</h3>
+                    <p>{tool.description}</p>
+                </div>
+            </li>
+        ))
+    }
+</ul>
+
+<style>
+    .tools-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem 3rem;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    @media (min-width: 640px) {
+        .tools-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (min-width: 810px) {
+        .tools-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    @media (min-width: 1080px) {
+        .tools-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (min-width: 1440px) {
+        .tools-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    .tool {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+        border-radius: 12px;
+        cursor: pointer;
+    }
+
+    .tool:hover {
+        background: rgba(255, 255, 255, 0.05);
+    }
+
+    .icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 12px;
+
+        display: grid;
+        place-items: center;
+        flex-shrink: 0;
+    }
+
+    .icon img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .meta h3 {
+        margin: 0;
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #fff;
+    }
+
+    .meta p {
+        margin: 0.2rem 0 0;
+        font-size: 1rem;
+        color: rgba(255, 255, 255, 0.6);
+    }
+</style>

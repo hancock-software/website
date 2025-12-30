@@ -1,0 +1,18 @@
+heading: Projects
+
+projects:
+  - title: Project Title
+    description: A brief description of the project.
+    link: 
+
+  - title: Project Title
+    description: A brief description of the project.
+    link: 
+  
+  - title: Project Title
+    description: A brief description of the project.
+    link: 
+    skills:
+      - Skill 1
+      - Skill 2
+      - Skill 3

@@ -1,0 +1,33 @@
+---
+const { title, links } = Astro.props as Props;
+
+type Link = {
+    label: string;
+    href: string;
+    rel?: string;
+    target?: "_blank" | "_self" | "_parent" | "_top";
+};
+
+export type Props = {
+    title?: string;
+    links: Link[];
+};
+---
+
+<div>
+    {title && <div>{title}</div>}
+
+    <div>
+        <ul class="links">
+            {
+                links.map((l) => (
+                    <li>
+                        <a href={l.href} rel={l.rel} target={l.target}>
+                            {l.label}
+                        </a>
+                    </li>
+                ))
+            }
+        </ul>
+    </div>
+</div>
