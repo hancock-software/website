@@ -1,13 +1,11 @@
 ---
 import Layout from "../layouts/Layout.astro";
 
-import Home from "../components/home/Index.astro";
-import About from "../components/about/Index.astro";
-import Services from "../components/services/Index.astro";
+import Home from "../components/home/Home.astro";
+import About from "../components/about/About.astro";
+import Services from "../components/services/Services.astro";
 import Contact from "../components/contact/Contact.astro";
 import Tools from "../components/tools/Tools.astro";
-
-import sections from "../data/sections.yml";
 
 const registry = {
 	home: Home,
@@ -26,23 +24,27 @@ export type Section = {
 ---
 
 <Layout>
-	{
-		sections.map((section: Section) => {
-			const Component = registry[section.id];
-
-			return (
-				<section id={section.id}>
-					<Component />
-				</section>
-			);
-		})
-	}
+	<section id="home" data-aos="fade-down">
+		<Home />
+	</section>
+	<section id="about" data-aos="fade-down" data-aos-delay="100">
+		<About />
+	</section>
+	<section id="services" data-aos="fade-down" data-aos-delay="200">
+		<Services />
+	</section>
+	<section id="tools" data-aos="fade-down" data-aos-delay="300">
+		<Tools />
+	</section>
+	<section id="contact" data-aos="fade-down" data-aos-delay="400">
+		<Contact />
+	</section>
 </Layout>
 
 <style>
 	section {
 		width: 100%;
-		max-width: 750px;
+		max-width: 46rem;
 		padding: 2rem 0;
 		margin: 0 auto;
 	}

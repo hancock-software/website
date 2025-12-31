@@ -1,11 +1,19 @@
 ---
+import Document from "../../components/shared/Document.astro";
 import Layout from "../../layouts/Layout.astro";
+import { getEntry } from "astro:content";
+
+const entry = await getEntry("legal", "terms");
+
+if (!entry) {
+	throw new Error("Page not found");
+}
+
+const { Content } = await entry.render();
 ---
 
-<Layout />
-
-<style>
-	section {
-		padding: 2rem 2rem;
-	}
-</style>
+<Layout>
+	<Document title={entry.data.title} updated={entry.data.updated}>
+		<Content />
+	</Document>
+</Layout>

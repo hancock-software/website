@@ -14,11 +14,6 @@ footer:
       substitution: Delivery may be provided by suitably qualified associates
       independence: Engagements are non-exclusive and delivered independently
 
-  compliance:
-    professional_indemnity_insured: true
-    public_liability_insured: true
-    vat_registered: true
-
   legal:
     copyright: "© 2025 Hancock Software Solutions Ltd"
     rights: All rights reserved
