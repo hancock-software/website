@@ -1,21 +1,30 @@
 ---
-import sections from "../../data/sections.yml";
-
 export type Section = {
-    id: string;
-    title: string;
+    label: string;
+    href: string;
     icon: string;
-    order: number;
 };
+
+const sections = [
+    { label: "home", icon: "lni-home-2", href: "/#home" },
+    { label: "about", icon: "lni-briefcase-1", href: "/#about" },
+    { label: "services", icon: "lni-code-1", href: "/#services" },
+    { label: "tools", icon: "lni-compass-drafting-2", href: "/#tools" },
+    { label: "contact", icon: "lni-envelope-1", href: "/#contact" },
+] as Section[];
 ---
 
 <nav>
     <ul>
         {
-            sections.map((section: Section) => (
+            sections.map((section) => (
                 <li>
-                    <a href={`/#${section.id}`} title={section.title}>
-                        <i class={`${section.icon}`} />
+                    <a
+                        href={section.href}
+                        title={section.label}
+                        data-aos="fade-in"
+                    >
+                        <i class={`lni ${section.icon}`} />
                     </a>
                 </li>
             ))

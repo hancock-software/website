@@ -34,16 +34,7 @@ import "lineicons/dist/lineicons.css";
 		</div>
 
 		<footer>
-			<Footer
-				company={site.company}
-				companyNumber={site.companyNumber}
-				vatNumber={site.vatNumber}
-				location={site.location}
-				email={site.email}
-				legal={site.legal}
-				socials={site.socials}
-				disclaimer={site.disclaimer}
-			/>
+			<Footer {...site} />
 		</footer>
 
 		<script>

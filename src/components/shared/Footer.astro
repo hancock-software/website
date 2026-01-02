@@ -1,46 +1,24 @@
 ---
-import Links from "./Links.astro";
+import type { Link, Social, Company } from "../../models/link";
 
-type Link = {
-    label: string;
-    href: string;
-    rel?: string;
-    target?: "_blank" | "_self" | "_parent" | "_top";
-};
-
-export type Props = {
-    company: string;
-    companyNumber: string;
-    vatNumber: string;
-    location: string[];
-    email: string;
+const { company, legal, socials, disclaimer } = Astro.props as {
+    company: Company;
     legal: Link[];
-    socials: Link[];
+    socials: Social[];
     disclaimer: string;
 };
-
-const {
-    company,
-    companyNumber,
-    vatNumber,
-    location = [],
-    email,
-    legal = [],
-    socials = [],
-    disclaimer,
-} = Astro.props as Props;
 ---
 
 <div class="footer">
     <div class="footer-content">
         <div class="footer-grid">
             {
-                (location.length > 0 || email) && (
+                (company.location.length > 0 || company.email) && (
                     <div class="footer-section">
                         <h4>Contact</h4>
-                        {location.length > 0 && (
+                        {company.location.length > 0 && (
                             <address>
-                                {location.map((line) => (
+                                {company.location.map((line) => (
                                     <span>
                                         {line}
                                         <br />
@@ -48,9 +26,11 @@ const {
                                 ))}
                             </address>
                         )}
-                        {email && (
+                        {company.email && (
                             <p>
-                                <a href={`mailto:${email}`}>{email}</a>
+                                <a href={`mailto:${company.email}`}>
+                                    {company.email}
+                                </a>
                             </p>
                         )}
                     </div>
@@ -84,12 +64,12 @@ const {
         <div class="footer-bottom">
             <p class="copyright">
                 © {new Date().getFullYear()}
-                {company}. All rights reserved.
+                {company.name}. All rights reserved.
             </p>
             <p class="company-details">
-                {companyNumber && <span>Company No: {companyNumber}</span>}
-                {companyNumber && vatNumber && <span> · </span>}
-                {vatNumber && <span>VAT No: {vatNumber}</span>}
+                {company.number && <span>Company No: {company.number}</span>}
+                {company.number && company.vat && <span> · </span>}
+                {company.vat && <span>VAT No: {company.vat}</span>}
             </p>
         </div>
     </div>
